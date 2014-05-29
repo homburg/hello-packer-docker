@@ -1,0 +1,6 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+    - name: ensure hello command is installed and executable
+      copy: src=/tmp/hello dest=/usr/local/bin/hello mode=0755

@@ -1,0 +1,20 @@
+---
+builders:
+- type: docker
+  image: dockerfile/ansible
+  export_path: hello-packer-docker.tar
+provisioners:
+- type: file
+  source: files/hello
+  destination: /tmp/hello
+  # Ansible is only available in local mode ATOW
+- type: ansible-local
+  playbook_file: playbook.yml
+post-processors:
+- type: docker-import
+  repository: homburg/hello-packer-docker
+  tag: latest
+  cmd: hello; sleep infinity
+  expose:
+    - 80
+    - 22
