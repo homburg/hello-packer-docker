@@ -14,7 +14,10 @@ post-processors:
 - type: docker-import
   repository: homburg/hello-packer-docker
   tag: latest
-  cmd: hello; sleep infinity
-  expose:
-    - 80
-    - 22
+  dockerfile: >
+    FROM {{.id}}
+    
+    EXPOSE 80
+    EXPOSE 22
+    
+    CMD hello; sleep infinity
