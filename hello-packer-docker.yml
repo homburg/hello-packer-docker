@@ -14,9 +14,6 @@ post-processors:
 - type: docker-import
   repository: homburg/hello-packer-docker
   tag: latest
-  expose:
-    - 80
-    - 22
   dockerfile_lines:
     - EXPOSE 80
     - EXPOSE 22
